@@ -1,0 +1,15 @@
+@model SpaceGeeks.Models.Planet
+
+<div class="planet-card">
+    <h2>@Model.Name</h2>
+    <img src="@Model.ImagePath"
+         alt="@Model.Name"
+         onerror="this.onerror=null; this.src='/images/placeholder.svg';" />
+    <ul class="planet-facts">
+        <li><strong>Diameter:</strong> @Model.DiameterKm.ToString("N0") km</li>
+        <li><strong>Mass:</strong> @Model.MassKg.ToString("E3") kg</li>
+        <li><strong>Distance from Sun:</strong> @Model.DistanceFromSunKm.ToString("N0") km</li>
+        <li><strong>Moons:</strong> @Model.NumberOfMoons</li>
+        <li><strong>Orbital Period:</strong> @Model.OrbitalPeriodDays.ToString("N1") days</li>
+    </ul>
+</div>

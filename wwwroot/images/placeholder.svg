@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1a1a2e"/>
+  <circle cx="100" cy="100" r="70" fill="#2d2d5e" stroke="#4a4a8a" stroke-width="2"/>
+  <circle cx="100" cy="100" r="70" fill="url(#planetGrad)" opacity="0.8"/>
+  <ellipse cx="100" cy="100" rx="95" ry="18" fill="none" stroke="#6a6a9a" stroke-width="2" opacity="0.5"/>
+  <defs>
+    <radialGradient id="planetGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#6b6b9e"/>
+      <stop offset="60%" stop-color="#3d3d70"/>
+      <stop offset="100%" stop-color="#1a1a40"/>
+    </radialGradient>
+  </defs>
+  <text x="100" y="175" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#8888cc" opacity="0.8">Image unavailable</text>
+</svg>

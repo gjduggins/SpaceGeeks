@@ -1,0 +1,190 @@
+/* ============================================================
+   Base reset & box-model
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   Root / HTML
+   ============================================================ */
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+  /* Prevent horizontal overflow at any viewport width */
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* ============================================================
+   Body
+   ============================================================ */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #0d0d1a;
+  color: #e8e8f0;
+  line-height: 1.6;
+  margin-bottom: 60px;
+  /* Ensure body never exceeds viewport width */
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   Layout container (Bootstrap .container override is fine,
+   but also ensure our own container doesn't overflow)
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ============================================================
+   Focus styles (preserved from original)
+   ============================================================ */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* ============================================================
+   Planet grid — mobile-first CSS Grid
+   ============================================================ */
+
+/* Default: single column (< 768 px) */
+.planet-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+/* Two+ columns from 768 px */
+@media (min-width: 768px) {
+  .planet-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* Three+ columns from 1280 px */
+@media (min-width: 1280px) {
+  .planet-grid {
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  }
+}
+
+/* ============================================================
+   Planet card
+   ============================================================ */
+.planet-card {
+  background-color: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  overflow: hidden;
+  /* Prevent any content from causing horizontal scroll */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 0; /* allows grid item to shrink below content size */
+}
+
+/* Planet card image */
+.planet-card img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Planet name heading */
+.planet-card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #a0c4ff;
+  margin-bottom: 0.75rem;
+  /* Prevent long planet names from overflowing */
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Fact list */
+.planet-facts {
+  list-style: none;
+  font-size: 0.9rem;
+  color: #c8c8d8;
+}
+
+.planet-facts li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #2a2a4a;
+  /* Ensure long numbers/strings wrap */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.planet-facts li:last-child {
+  border-bottom: none;
+}
+
+.planet-facts strong {
+  color: #e0e0f0;
+}
+
+/* ============================================================
+   Visually hidden utility (used for the h1 on Index page)
+   ============================================================ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   Header / navbar adjustments
+   ============================================================ */
+header .navbar {
+  background-color: #16213e !important;
+  border-bottom-color: #2a2a4a !important;
+}
+
+header .navbar-brand,
+header .nav-link {
+  color: #a0c4ff !important;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+  color: #888;
+  border-top-color: #2a2a4a !important;
+}
