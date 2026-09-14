@@ -9,7 +9,7 @@ namespace SpaceGeeks.Data;
 /// </summary>
 public sealed class InMemoryPlanetRepository : IPlanetRepository
 {
-    private static readonly IReadOnlyList<Planet> _planets = new List<Planet>
+    private static readonly IReadOnlyList<Planet> planets = new List<Planet>
     {
         new Planet("Mercury", DiameterKm: 4_879,    MassKg: 3.285e23, DistanceFromSunKm: 57_900_000,     NumberOfMoons: 0,   OrbitalPeriodDays: 88.0,    ImagePath: "/images/mercury.webp"),
         new Planet("Venus",   DiameterKm: 12_104,   MassKg: 4.867e24, DistanceFromSunKm: 108_200_000,    NumberOfMoons: 0,   OrbitalPeriodDays: 224.7,   ImagePath: "/images/venus.webp"),
@@ -22,5 +22,5 @@ public sealed class InMemoryPlanetRepository : IPlanetRepository
     }.AsReadOnly();
 
     /// <inheritdoc />
-    public IReadOnlyList<Planet> GetAllOrderedByDistance() => _planets;
+    public IReadOnlyList<Planet> GetAllOrderedByDistance() => planets;
 }
