@@ -24,3 +24,6 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
+// Required to expose Program to WebApplicationFactory in test projects
+public partial class Program { }
