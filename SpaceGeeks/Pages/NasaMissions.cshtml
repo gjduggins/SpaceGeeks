@@ -1,0 +1,38 @@
+@page
+@model NasaMissionsModel
+@{
+    ViewData["Title"] = "NASA Missions Timeline";
+}
+
+<div class="timeline-container">
+    <h1>NASA Missions Timeline</h1>
+    <p class="lead">Explore the history of NASA's most significant missions that have shaped our understanding of space.</p>
+    
+    <div class="timeline">
+        @for (int i = 0; i < Model.Missions.Count; i++)
+        {
+            var mission = Model.Missions[i];
+            var isEven = i % 2 == 0;
+            
+            <div class="timeline-item @(isEven ? "left" : "right")">
+                <div class="timeline-content">
+                    <div class="mission-year">@mission.Year</div>
+                    <h3>@mission.Name</h3>
+                    @if (!string.IsNullOrEmpty(mission.ImagePath))
+                    {
+                        <div class="mission-image">
+                            <img src="@mission.ImagePath" alt="@mission.Name" 
+                                 onerror="this.onerror=null; this.src='/images/placeholder.jpg';" />
+                        </div>
+                    }
+                    <p class="mission-description">@mission.Description</p>
+                    <div class="mission-type">
+                        <span class="badge @(mission.IsManned ? "badge-manned" : "badge-unmanned")">
+                            @(mission.IsManned ? "Manned" : "Unmanned")
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
