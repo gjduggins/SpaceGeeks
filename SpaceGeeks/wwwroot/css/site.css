@@ -106,12 +106,20 @@ body {
 }
 
 /* Planet card image */
+.planet-card picture {
+  display: block;
+  background-color: #000;
+  border-radius: 0.5rem;
+  margin: 0 auto 1rem;
+  overflow: hidden;
+}
 .planet-card img {
   display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto 1rem;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
   border-radius: 0.5rem;
+  mix-blend-mode: normal;
 }
 
 /* Planet name heading */
