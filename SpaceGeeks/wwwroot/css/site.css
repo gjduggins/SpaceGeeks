@@ -157,6 +157,176 @@ body {
 }
 
 /* ============================================================
+   NASA Missions Timeline
+   ============================================================ */
+.timeline-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.timeline-container h1 {
+  text-align: center;
+  color: #a0c4ff;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.timeline-container .lead {
+  text-align: center;
+  color: #c8c8d8;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Vertical line */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #2a2a4a;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  border-radius: 3px;
+}
+
+/* Container around content */
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+/* Place left and right items differently */
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+/* Circles on timeline */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  background-color: #16213e;
+  border: 4px solid #a0c4ff;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item.right::after {
+  left: -10px;
+}
+
+/* Content boxes */
+.timeline-content {
+  padding: 20px;
+  background-color: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 0.75rem;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-content h3 {
+  color: #a0c4ff;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.mission-year {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e0e0f0;
+  margin-bottom: 0.5rem;
+}
+
+.mission-description {
+  color: #c8c8d8;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.mission-image {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.mission-image img {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid #2a2a4a;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.375rem;
+}
+
+.badge-manned {
+  color: #fff;
+  background-color: #0d6efd;
+}
+
+.badge-unmanned {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  /* Place all items on left in single column */
+  .timeline::after {
+    left: 31px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    left: 0 !important;
+  }
+  
+  .timeline-item::after {
+    left: 21px !important;
+    right: auto;
+  }
+  
+  .timeline-container h1 {
+    font-size: 2rem;
+  }
+  
+  .timeline-container .lead {
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================
    Visually hidden utility (used for the h1 on Index page)
    ============================================================ */
 .visually-hidden {
