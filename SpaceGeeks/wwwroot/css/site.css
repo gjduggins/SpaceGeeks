@@ -116,7 +116,7 @@ body {
 .planet-card img {
   display: block;
   width: 100%;
-  height: 280px;
+  height: 240px;
   object-fit: cover;
   border-radius: 0.5rem;
   mix-blend-mode: normal;
