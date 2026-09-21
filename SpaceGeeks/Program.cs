@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<SpaceGeeks.Data.IPlanetRepository, SpaceGeeks.Data.InMemoryPlanetRepository>();
+builder.Services.AddSingleton<SpaceGeeks.Data.IMissionRepository, SpaceGeeks.Data.InMemoryMissionRepository>();
 
 var app = builder.Build();
 
