@@ -1,0 +1,35 @@
+@page
+@model MissionsModel
+@{
+    ViewData["Title"] = "NASA Missions";
+}
+
+<div class="container">
+    <h1>NASA Missions</h1>
+    <p class="lead">Explore some of the most important missions in NASA's history</p>
+
+    <div class="row">
+        @foreach (var mission in Model.Missions)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <img src="@mission.ImagePath" class="card-img-top" alt="@mission.Name" onerror="this.onerror=null; this.src='/images/placeholder.svg';">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@mission.Name</h5>
+                        <p class="card-text flex-grow-1">@mission.Description</p>
+                        <div class="mt-auto">
+                            <p class="card-text"><small class="text-muted">Launched: @mission.LaunchDate.ToString("MMMM dd, yyyy")</small></p>
+                            @if (mission.LandingDate != null)
+                            {
+                                <p class="card-text"><small class="text-muted">Landed: @mission.LandingDate.Value.ToString("MMMM dd, yyyy")</small></p>
+                            }
+                            <span class="badge @(mission.Successful ? "bg-success" : "bg-danger")">
+                                @(mission.Successful ? "Successful" : "Unsuccessful")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
