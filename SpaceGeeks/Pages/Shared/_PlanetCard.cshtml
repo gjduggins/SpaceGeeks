@@ -3,7 +3,8 @@
 <div class="planet-card">
     <h2>@Model.Name</h2>
     <img src="@(Model.ImagePath.Replace(".webp", ".jpg"))"
-         alt="@Model.Name" />
+         alt="@Model.Name"
+         onerror="this.onerror=null; this.src='/images/placeholder.svg';" />
     <ul class="planet-facts">
         <li><strong>Diameter:</strong> @Model.DiameterKm.ToString("N0") km</li>
         <li><strong>Mass:</strong> @Model.MassKg.ToString("E3") kg</li>
