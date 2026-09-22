@@ -10,3 +10,7 @@ SpaceGeeks is a web application built with ASP.NET Core Razor Pages that provide
 
 - Web Frontend: ASP.NET Core Razor Pages
 - Error Handling: Custom error pages
+
+## Documents
+
+- [Error Page Update](error-page-update.md) - High-level design for the error page message update
