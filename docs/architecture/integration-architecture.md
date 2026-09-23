@@ -4,6 +4,8 @@
 
 This document describes the integration architecture of the SpaceGeeks website, detailing how different components interact internally and any external integrations.
 
+For detailed information about the NASA Missions feature integration, please see the [NASA Missions Integration Architecture](./nasa-missions-integration.md).
+
 ## 2. Internal Integration Patterns
 
 ### 2.1 Dependency Injection
