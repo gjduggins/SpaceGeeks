@@ -1,0 +1,22 @@
+@page
+@model ImportantNasaMissionsModel
+@{
+    ViewData["Title"] = "Important NASA Missions";
+}
+
+<h1>Important NASA Missions</h1>
+<p>Discover the most significant missions in NASA's history that have shaped our understanding of space.</p>
+
+@if (Model.Missions.Any())
+{
+    <div class="mission-grid">
+        @foreach (var mission in Model.Missions)
+        {
+            <partial name="_MissionCard" model="mission" />
+        }
+    </div>
+}
+else
+{
+    <p>No important missions found.</p>
+}
