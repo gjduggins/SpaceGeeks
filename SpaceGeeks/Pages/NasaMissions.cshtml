@@ -1,0 +1,14 @@
+@page
+@model NasaMissionsModel
+@{
+    ViewData["Title"] = "NASA Missions";
+}
+
+<h1>NASA Missions</h1>
+
+<div class="mission-grid">
+    @foreach (var mission in Model.Missions)
+    {
+        <partial name="_MissionCard" model="mission" />
+    }
+</div>
