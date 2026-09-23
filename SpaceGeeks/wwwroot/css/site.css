@@ -64,11 +64,12 @@ body {
 }
 
 /* ============================================================
-   Planet grid — mobile-first CSS Grid
+   Grid — mobile-first CSS Grid (used for both planets and missions)
    ============================================================ */
 
 /* Default: single column (< 768 px) */
-.planet-grid {
+.planet-grid,
+.mission-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
@@ -78,22 +79,25 @@ body {
 
 /* Two+ columns from 768 px */
 @media (min-width: 768px) {
-  .planet-grid {
+  .planet-grid,
+  .mission-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
 
 /* Three+ columns from 1280 px */
 @media (min-width: 1280px) {
-  .planet-grid {
+  .planet-grid,
+  .mission-grid {
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   }
 }
 
 /* ============================================================
-   Planet card
+   Card (used for both planet and mission cards)
    ============================================================ */
-.planet-card {
+.planet-card,
+.mission-card {
   background-color: #1a1a2e;
   border: 1px solid #2a2a4a;
   border-radius: 0.75rem;
@@ -105,15 +109,17 @@ body {
   min-width: 0; /* allows grid item to shrink below content size */
 }
 
-/* Planet card image */
-.planet-card picture {
+/* Card image */
+.planet-card picture,
+.mission-card picture {
   display: block;
   background-color: #000;
   border-radius: 0.5rem;
   margin: 0 auto 1rem;
   overflow: hidden;
 }
-.planet-card img {
+.planet-card img,
+.mission-card img {
   display: block;
   width: 100%;
   height: 280px;
@@ -122,25 +128,36 @@ body {
   mix-blend-mode: normal;
 }
 
-/* Planet name heading */
-.planet-card h2 {
+/* Card name heading */
+.planet-card h2,
+.mission-card h2 {
   font-size: 1.4rem;
   font-weight: 700;
   color: #a0c4ff;
   margin-bottom: 0.75rem;
-  /* Prevent long planet names from overflowing */
+  /* Prevent long names from overflowing */
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
+/* Description paragraph (for missions) */
+.mission-card p {
+  font-size: 0.95rem;
+  color: #c8c8d8;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
 /* Fact list */
-.planet-facts {
+.planet-facts,
+.mission-facts {
   list-style: none;
   font-size: 0.9rem;
   color: #c8c8d8;
 }
 
-.planet-facts li {
+.planet-facts li,
+.mission-facts li {
   padding: 0.3rem 0;
   border-bottom: 1px solid #2a2a4a;
   /* Ensure long numbers/strings wrap */
@@ -148,11 +165,13 @@ body {
   word-wrap: break-word;
 }
 
-.planet-facts li:last-child {
+.planet-facts li:last-child,
+.mission-facts li:last-child {
   border-bottom: none;
 }
 
-.planet-facts strong {
+.planet-facts strong,
+.mission-facts strong {
   color: #e0e0f0;
 }
 
