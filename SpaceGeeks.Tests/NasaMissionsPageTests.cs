@@ -117,4 +117,111 @@ public class NasaMissionsPageTests : IClassFixture<WebApplicationFactory<Program
         Assert.Contains("Mars Rover Perseverance", html);
         Assert.Contains("James Webb Space Telescope", html);
     }
+
+    [Fact]
+    public async Task NasaMissionsPage_WithActiveFilter_DisplaysOnlyActiveMissions()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/NasaMissions?status=Active");
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Assert - Should only show active missions
+        Assert.Contains("Voyager 1", html);
+        Assert.Contains("Hubble Space Telescope", html);
+        Assert.Contains("Mars Rover Perseverance", html);
+        Assert.Contains("James Webb Space Telescope", html);
+        // Apollo 11 is completed, should not be shown
+        Assert.DoesNotContain("Apollo 11", html);
+    }
+
+    [Fact]
+    public async Task NasaMissionsPage_WithCompletedFilter_DisplaysOnlyCompletedMissions()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/NasaMissions?status=Completed");
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Assert - Should only show completed missions
+        Assert.Contains("Apollo 11", html);
+        // Active missions should not be shown
+        Assert.DoesNotContain("Voyager 1", html);
+        Assert.DoesNotContain("Hubble Space Telescope", html);
+        Assert.DoesNotContain("Mars Rover Perseverance", html);
+        Assert.DoesNotContain("James Webb Space Telescope", html);
+    }
+
+    [Fact]
+    public async Task NasaMissionsPage_WithFilter_ShowsFilterControls()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/NasaMissions?status=Active");
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Assert - Should show filter controls
+        Assert.Contains("Filter by Status:", html);
+        Assert.Contains("<select", html);
+        Assert.Contains("Clear Filter", html);
+    }
+
+    [Fact]
+    public async Task NasaMissionsPage_WithInvalidFilter_DisplaysNoMissionsMessage()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/NasaMissions?status=InvalidStatus");
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Assert - Should show no missions found message
+        Assert.Contains("No missions found matching the current filter.", html);
+    }
+
+    [Fact]
+    public async Task NasaMissionsPage_EachMissionCard_HasStatusBadge()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/NasaMissions");
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+
+        // Parse HTML
+        var doc = new HtmlDocument();
+        doc.LoadHtml(html);
+
+        // Find all mission cards
+        var missionCards = doc.DocumentNode
+            .SelectNodes("//div[contains(@class,'mission-card')]");
+
+        // Assert
+        Assert.NotNull(missionCards);
+        Assert.NotEmpty(missionCards);
+
+        foreach (var card in missionCards)
+        {
+            var statusBadges = card.SelectNodes(".//span[contains(@class,'mission-status')]");
+            Assert.NotNull(statusBadges);
+            Assert.Single(statusBadges);
+            
+            var statusText = statusBadges[0].InnerText.Trim();
+            Assert.True(statusText == "Active" || statusText == "Completed" || statusText == "Failed",
+                $"Expected status badge to contain 'Active', 'Completed', or 'Failed', but found: '{statusText}'");
+        }
+    }
 }
