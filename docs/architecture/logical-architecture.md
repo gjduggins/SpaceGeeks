@@ -115,6 +115,20 @@ sequenceDiagram
     P-->>U: Return HTML response
 ```
 
+### 4.2 Mission Card Rendering Flow
+
+```mermaid
+sequenceDiagram
+    participant P as NasaMissions.cshtml
+    participant C as _MissionCard.cshtml
+    participant M as NasaMission Model
+    
+    P->>C: RenderPartialAsync("_MissionCard", mission)
+    C->>M: Access mission properties
+    C->>C: Generate HTML markup
+    C-->>P: Return rendered HTML
+```
+
 ## 5. Design Patterns
 
 ### 5.1 Repository Pattern
@@ -159,3 +173,76 @@ Domain models use C# records to ensure immutability.
 - Better performance for content-focused sites
 - Easier to maintain and deploy
 - Appropriate for educational website requirements
+
+## 7. NASA Missions Components
+
+### 7.1 NasaMissionsModel
+The page model for the NASA missions page implements dependency injection to retrieve mission data.
+
+**Key Features:**
+- Constructor injection of `INasaMissionRepository`
+- Public `Missions` property exposing data to the view
+- Simple `OnGet()` method that retrieves all missions
+
+**Code Example:**
+```csharp
+public class NasaMissionsModel : PageModel
+{
+    private readonly INasaMissionRepository _repo;
+    
+    public NasaMissionsModel(INasaMissionRepository repo) => _repo = repo;
+    
+    public IReadOnlyList<NasaMission> Missions { get; private set; } = [];
+    
+    public void OnGet() => Missions = _repo.GetAllOrderedByLaunchDate();
+}
+```
+
+### 7.2 INasaMissionRepository
+Interface defining the contract for NASA mission data access.
+
+**Method Signature:**
+```csharp
+IReadOnlyList<NasaMission> GetAllOrderedByLaunchDate();
+```
+
+**Design Principles:**
+- Returns immutable collection
+- Orders missions chronologically by launch date
+- Never returns null (empty list if no data)
+- Thread-safe for concurrent access
+
+### 7.3 InMemoryNasaMissionRepository
+Implementation of the NASA mission repository using in-memory storage.
+
+**Key Characteristics:**
+- Sealed class preventing inheritance
+- Private static readonly collection of missions
+- Orders missions by launch date in ascending order
+- Returns immutable array to prevent external modification
+
+### 7.4 NasaMission Model
+Immutable record representing a NASA space mission.
+
+**Properties:**
+- `Id`: Unique identifier for the mission
+- `Name`: Official name of the mission
+- `Description`: Brief overview of the mission objectives
+- `LaunchDate`: Date when the mission was launched
+- `EndDate`: Date when the mission concluded (nullable for ongoing missions)
+- `ImageUrl`: URL to an image representing the mission
+
+**Immutability Benefits:**
+- Safe sharing across threads
+- Predictable behavior in collections
+- No defensive copying required
+- Simplified testing and debugging
+
+### 7.5 _MissionCard Partial View
+Reusable Razor partial view for consistent mission presentation.
+
+**Features:**
+- Accepts `NasaMission` model as input
+- Responsive design for various screen sizes
+- Consistent styling with the rest of the site
+- Proper handling of nullable properties (e.g., EndDate)
