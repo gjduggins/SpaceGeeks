@@ -43,6 +43,14 @@ Responsible for rendering the user interface and handling user interactions.
 - Handling GET/POST requests
 - Delegating to page models for business logic
 
+#### NASA Missions Page Features
+The NASA Missions page (`NasaMissions.cshtml`) implements several key features:
+
+1. **Grid Layout**: Uses CSS Grid for responsive mission card arrangement
+2. **Dynamic Content**: Renders mission cards dynamically from data
+3. **Image Error Handling**: Implements fallback images for missing assets
+4. **Accessibility**: Semantic HTML structure with proper heading hierarchy
+
 ### 3.2 Business Logic Layer
 
 #### Page Models
@@ -59,6 +67,13 @@ Handle request processing and coordinate between presentation and data layers.
 - Coordinating data retrieval from repositories
 - Preparing data for presentation
 - Handling business rules and validation
+
+#### NasaMissionsModel Details
+The `NasaMissionsModel` specifically handles NASA missions page requests:
+
+1. **Dependency Injection**: Receives `INasaMissionRepository` through constructor injection
+2. **Data Retrieval**: Calls repository to get all missions ordered by launch date
+3. **Data Exposure**: Exposes missions through `Missions` property to the view
 
 ### 3.3 Data Access Layer
 
@@ -78,6 +93,23 @@ Provide access to domain data through well-defined interfaces.
 - Providing consistent data access patterns
 - Ensuring data integrity and immutability
 
+#### INasaMissionRepository Details
+The NASA mission repository interface defines a simple contract:
+
+```csharp
+public interface INasaMissionRepository
+{
+    IReadOnlyList<NasaMission> GetAllOrderedByLaunchDate();
+}
+```
+
+#### InMemoryNasaMissionRepository Details
+The in-memory implementation provides NASA mission data:
+
+1. **Static Data**: Contains predefined mission information
+2. **Ordering**: Returns missions ordered by launch date
+3. **Immutability**: Returns read-only collections to prevent accidental modification
+
 ### 3.4 Domain Layer
 
 #### Models
@@ -92,6 +124,20 @@ Represent core business entities as immutable records.
 - Contain only data and no behavior
 - Validated at construction time
 - Thread-safe due to immutability
+
+#### NasaMission Model Details
+The `NasaMission` record encapsulates mission information:
+
+```csharp
+public sealed record NasaMission(
+    string Name,
+    string Description,
+    DateTime LaunchDate,
+    DateTime? EndDate,
+    string Status,           // Active, Completed, Failed
+    string ImagePath         // relative URL to static asset, e.g. "/images/apollo11.webp"
+);
+```
 
 ## 4. Data Flow
 
@@ -113,6 +159,24 @@ sequenceDiagram
     M-->>P: Populate Missions property
     P->>P: Render mission cards using _MissionCard partial
     P-->>U: Return HTML response
+```
+
+### 4.2 Mission Card Rendering Flow
+
+```mermaid
+sequenceDiagram
+    participant P as NasaMissions.cshtml
+    participant M as NasaMissionsModel
+    participant C as _MissionCard.cshtml
+    participant N as NasaMission
+    
+    P->>M: Access Missions collection
+    loop For each mission
+        P->>C: Render partial with NasaMission model
+        C->>N: Access mission properties
+        N-->>C: Return property values
+        C-->>P: Return rendered HTML
+    end
 ```
 
 ## 5. Design Patterns
@@ -142,6 +206,14 @@ Domain models use C# records to ensure immutability.
 - Simplified reasoning about data
 - Automatic equality implementation
 
+### 5.4 Partial Views
+Reusable UI components for consistent presentation.
+
+**Benefits:**
+- Reduces code duplication
+- Enables consistent UI design
+- Improves maintainability
+
 ## 6. Architectural Decisions
 
 ### 6.1 In-Memory Data Storage
@@ -159,3 +231,11 @@ Domain models use C# records to ensure immutability.
 - Better performance for content-focused sites
 - Easier to maintain and deploy
 - Appropriate for educational website requirements
+
+### 6.3 NASA Mission Data Structure
+**Decision**: Include launch date, end date, status, and image path in mission model.
+**Rationale**:
+- Provides essential information for educational purposes
+- Supports chronological ordering of missions
+- Enables visual representation with images
+- Allows for status differentiation (active vs. completed)
