@@ -1,0 +1,21 @@
+@model SpaceGeeks.Models.NasaMission
+
+<div class="mission-card">
+    <h2>@Model.Name</h2>
+    <img src="@Model.ImagePath"
+         alt="@Model.Name"
+         onerror="this.onerror=null; this.src='/images/placeholder.svg';" />
+    <p>@Model.Description</p>
+    <ul class="mission-facts">
+        <li><strong>Launch Date:</strong> @Model.LaunchDate.ToString("MMMM dd, yyyy")</li>
+        @if (Model.EndDate.HasValue)
+        {
+            <li><strong>End Date:</strong> @Model.EndDate.Value.ToString("MMMM dd, yyyy")</li>
+        }
+        else
+        {
+            <li><strong>Status:</strong> Active</li>
+        }
+        <li><strong>Status:</strong> @Model.Status</li>
+    </ul>
+</div>
