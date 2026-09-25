@@ -64,7 +64,7 @@ public class NasaMissionsPageTests : IClassFixture<WebApplicationFactory<Program
 
         // Assert
         Assert.NotNull(missionCards);
-        Assert.Equal(5, missionCards.Count);
+        Assert.Equal(6, missionCards.Count);
     }
 
     [Fact]
@@ -114,6 +114,7 @@ public class NasaMissionsPageTests : IClassFixture<WebApplicationFactory<Program
         Assert.Contains("Apollo 11", html);
         Assert.Contains("Voyager 1", html);
         Assert.Contains("Hubble Space Telescope", html);
+        Assert.Contains("Mars Science Laboratory (Curiosity Rover)", html);
         Assert.Contains("Mars Rover Perseverance", html);
         Assert.Contains("James Webb Space Telescope", html);
     }

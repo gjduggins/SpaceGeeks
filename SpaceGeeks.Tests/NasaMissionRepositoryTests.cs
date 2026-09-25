@@ -17,7 +17,7 @@ public class NasaMissionRepositoryTests
         // Assert
         Assert.NotNull(missions);
         Assert.NotEmpty(missions);
-        Assert.Equal(5, missions.Count);
+        Assert.Equal(6, missions.Count);
         
         // Verify ordering by launch date (ascending)
         for (int i = 1; i < missions.Count; i++)
