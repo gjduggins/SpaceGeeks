@@ -34,6 +34,14 @@ public sealed class InMemoryNasaMissionRepository : INasaMissionRepository
             "/images/hubble.webp"
         ),
         new NasaMission(
+            "Mars Science Laboratory (Curiosity Rover)",
+            "Mars rover investigating the planet's habitability and climate",
+            new DateTime(2011, 11, 26),
+            null,
+            "Active",
+            "/images/curiosity.webp"
+        ),
+        new NasaMission(
             "Mars Rover Perseverance",
             "Mars rover searching for signs of ancient life",
             new DateTime(2020, 7, 30),
