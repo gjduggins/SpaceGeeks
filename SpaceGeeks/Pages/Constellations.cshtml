@@ -1,0 +1,18 @@
+@page
+@model SpaceGeeks.Pages.ConstellationsModel
+@{
+    ViewData["Title"] = "Constellations";
+}
+
+<h1>Constellations</h1>
+
+<p>Discover the patterns of stars that have guided humans for millennia.</p>
+
+<div class="row">
+    @foreach (var constellation in Model.Constellations)
+    {
+        <div class="col-md-4 mb-4">
+            <partial name="Shared/_ConstellationCard" model="constellation" />
+        </div>
+    }
+</div>

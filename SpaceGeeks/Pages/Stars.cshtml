@@ -1,0 +1,18 @@
+@page
+@model SpaceGeeks.Pages.StarsModel
+@{
+    ViewData["Title"] = "Stars";
+}
+
+<h1>Stars</h1>
+
+<p>Explore the stars visible from Earth.</p>
+
+<div class="row">
+    @foreach (var star in Model.Stars)
+    {
+        <div class="col-md-4 mb-4">
+            <partial name="Shared/_StarCard" model="star" />
+        </div>
+    }
+</div>
