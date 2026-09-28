@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<SpaceGeeks.Data.IPlanetRepository, SpaceGeeks.Data.InMemoryPlanetRepository>();
 builder.Services.AddSingleton<SpaceGeeks.Data.INasaMissionRepository, SpaceGeeks.Data.InMemoryNasaMissionRepository>();
+builder.Services.AddSingleton<SpaceGeeks.Data.IStarRepository, SpaceGeeks.Data.InMemoryStarRepository>();
+builder.Services.AddSingleton<SpaceGeeks.Data.IConstellationRepository, SpaceGeeks.Data.InMemoryConstellationRepository>();
 
 var app = builder.Build();
 
