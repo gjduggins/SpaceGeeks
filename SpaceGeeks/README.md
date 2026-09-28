@@ -1,70 +1,55 @@
-# SpaceGeeks
+# SpaceGeeks — Web Application
 
-SpaceGeeks is a website dedicated to all things space, providing educational content about our solar system and space exploration.
-
-## Features
-
-### Solar System Planets
-Browse information about the planets in our solar system, including:
-- Diameter and mass
-- Distance from the Sun
-- Number of moons
-- Orbital period
-
-### NASA Missions
-Learn about important NASA space missions, including:
-- Apollo 11 - First crewed mission to land on the Moon
-- Voyager 1 - Space probe studying interstellar space
-- Hubble Space Telescope - Space telescope for astronomy observations
-- Mars Rover Perseverance - Mars rover searching for signs of ancient life
-- James Webb Space Telescope - Infrared space telescope
+This is the main ASP.NET Core Razor Pages project for the SpaceGeeks application.
 
 ## Technology Stack
 
-- ASP.NET Core Razor Pages
-- C# 10
-- HTML5/CSS3
-- Bootstrap 5
-
-## Getting Started
-
-### Prerequisites
-- .NET 8 SDK
-
-### Running the Application
-1. Clone the repository
-2. Navigate to the SpaceGeeks directory
-3. Run `dotnet run`
-4. Open your browser to https://localhost:5001
-
-### Running Tests
-1. Navigate to the SpaceGeeks.Tests directory
-2. Run `dotnet test`
+| Layer | Technology |
+|---|---|
+| Framework | ASP.NET Core 8 Razor Pages |
+| Language | C# 12 |
+| UI | Bootstrap 5, HTML5/CSS3 |
 
 ## Project Structure
 
-- `SpaceGeeks/` - Main web application
-  - `Models/` - Data models (Planet, NasaMission)
-  - `Data/` - Repository interfaces and implementations
-  - `Pages/` - Razor Pages and partial views
-  - `wwwroot/` - Static assets (CSS, JavaScript, images)
-- `SpaceGeeks.Tests/` - Unit and integration tests
+```
+SpaceGeeks/
+├── Models/         # Immutable records
+│   ├── Planet.cs
+│   └── NasaMission.cs
+├── Data/           # Repository pattern
+│   ├── IPlanetRepository.cs
+│   ├── IINasaMissionRepository.cs
+│   ├── InMemoryPlanetRepository.cs
+│   └── InMemoryNasaMissionRepository.cs
+├── Pages/          # Razor Pages
+│   ├── Index.cshtml         # Home page
+│   ├── NasaMissions.cshtml  # Missions listing
+│   └── Shared/
+│       ├── _Layout.cshtml
+│       ├── _PlanetCard.cshtml
+│       └── _MissionCard.cshtml
+├── wwwroot/        # Static assets (CSS, JS, images)
+└── Properties/
+    └── launchSettings.json
+```
 
-## Documentation
+## Running Locally
 
-Additional documentation can be found in the `Documentation/` folder:
-- Delivery plans
-- Implementation summaries
-- Technical specifications
+```bash
+dotnet run
+```
 
-## Contributing
+The app will be available at:
+- **HTTP:** http://localhost:5233
+- **HTTPS:** https://localhost:7066
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a pull request
+## Models
 
-## License
+**Planet** — immutable record with: `Name`, `DiameterKm`, `MassKg`, `DistanceFromSunKm`, `NumberOfMoons`, `OrbitalPeriodDays`, `ImagePath`
 
-This project is licensed under the MIT License.
+**NasaMission** — immutable record with: `Name`, `Description`, `LaunchDate`, `EndDate`, `Status`, `ImagePath`
+
+## Data Layer
+
+Both repositories follow a simple interface pattern with an in-memory implementation. To swap in a database-backed implementation, implement `IPlanetRepository` or `INasaMissionRepository` and register it in `Program.cs`.
