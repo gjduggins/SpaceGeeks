@@ -1,0 +1,29 @@
+@model SpaceGeeks.Models.Constellation
+
+<div class="card h-100">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <dl class="row">
+            <dt class="col-sm-6">Hemisphere</dt>
+            <dd class="col-sm-6">@Model.Hemisphere</dd>
+            
+            <dt class="col-sm-6">Stars</dt>
+            <dd class="col-sm-6">
+                @if (Model.Stars.Any())
+                {
+                    <ul class="list-unstyled">
+                        @foreach (var star in Model.Stars)
+                        {
+                            <li>@star</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <span>No stars listed</span>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+@model SpaceGeeks.Models.Star
+
+<div class="card h-100">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <dl class="row">
+            <dt class="col-sm-6">Magnitude</dt>
+            <dd class="col-sm-6">@Model.ApparentMagnitude</dd>
+            
+            <dt class="col-sm-6">Distance</dt>
+            <dd class="col-sm-6">@Model.DistanceInLightYears ly</dd>
+            
+            <dt class="col-sm-6">Hemisphere</dt>
+            <dd class="col-sm-6">@Model.Hemisphere</dd>
+            
+            <dt class="col-sm-6">Constellation</dt>
+            <dd class="col-sm-6">@Model.Constellation</dd>
+        </dl>
+    </div>
+</div>
