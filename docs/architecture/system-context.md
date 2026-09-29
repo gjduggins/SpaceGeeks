@@ -10,6 +10,7 @@ This document describes the system context for the SpaceGeeks website, showing h
 graph TD
     A[User] -->|HTTPS/HTML| B(SpaceGeeks Website)
     B -->|Static Assets| C[(wwwroot)]
+    B -->|SQL Queries| D[(PostgreSQL Database)]
     
     subgraph "SpaceGeeks Application"
         B
@@ -21,11 +22,13 @@ graph TD
     
     subgraph "Storage"
         C
+        D
     end
     
     style B fill:#4CAF50,stroke:#388E3C
     style A fill:#2196F3,stroke:#0D47A1
     style C fill:#FF9800,stroke:#E65100
+    style D fill:#795548,stroke:#3E2723
 ```
 
 ## 3. System Description

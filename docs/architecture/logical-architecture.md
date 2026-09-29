@@ -12,12 +12,14 @@ The SpaceGeeks application follows a traditional layered architecture pattern wi
 graph TD
     A[Presentation Layer<br/>Razor Pages] --> B[Business Logic Layer<br/>Page Models]
     B --> C[Data Access Layer<br/>Repositories]
-    C --> D[Domain Layer<br/>Models]
+    C --> D[(Data Store<br/>PostgreSQL Database)]
+    C --> E[Domain Layer<br/>Models]
     
     style A fill:#4CAF50,stroke:#388E3C
     style B fill:#2196F3,stroke:#0D47A1
     style C fill:#FF9800,stroke:#E65100
-    style D fill:#9C27B0,stroke:#4A148C
+    style D fill:#795548,stroke:#3E2723
+    style E fill:#9C27B0,stroke:#4A148C
 ```
 
 ## 3. Component Details

@@ -50,13 +50,14 @@ The build process produces:
 ## 4. Runtime Environment
 
 ### 4.1 Hosting Model
-The application is self-hosted using Kestrel web server, which is embedded within the executable.
+The application is self-hosted using Kestrel web server, which is embedded within the executable, with an external PostgreSQL database dependency.
 
 **Characteristics:**
 - No external web server required (IIS, Apache, nginx)
-- Single executable deployment
+- Single executable deployment for application code
 - Cross-platform compatibility
 - Built-in HTTPS support
+- External database dependency for data persistence
 
 ### 4.2 Resource Requirements
 **Minimum Requirements:**
