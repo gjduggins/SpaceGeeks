@@ -2,12 +2,12 @@
 
 ## Data Classification
 - **Classification**: Public (educational content)
-- **Storage**: In-memory collections (no change from existing approach)
+- **Storage**: PostgreSQL database
 - **Encryption**: None required for public educational data
 
 ## Data at Rest
-- **Technology**: C# in-memory arrays
-- **Encryption**: Not applicable (transient data)
+- **Technology**: PostgreSQL relational database
+- **Encryption**: Database-level encryption (as configured in deployment environment)
 
 ## Data in Transit
 - **Protocol**: HTTPS
@@ -20,13 +20,14 @@ sequenceDiagram
     participant U as User
     participant P as NasaMissions.cshtml
     participant M as NasaMissionsModel
-    participant R as InMemoryNasaMissionRepository
-    participant D as NasaMission Data
+    participant R as PostgreSqlNasaMissionRepository
+    participant D as PostgreSQL Database
     
     U->>P: HTTP GET /NasaMissions
     P->>M: OnGet()
     M->>R: GetAllOrderedByLaunchDate()
-    R->>D: Access in-memory data
+    R->>D: Query NASA missions table
+    D-->>R: Return mission data
     R-->>M: Return IReadOnlyList<NasaMission>
     M-->>P: Populate Missions property
     P->>P: Apply client-side enhancements (filtering, sorting)

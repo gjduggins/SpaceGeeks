@@ -11,8 +11,8 @@ The primary integration mechanism within the application is .NET's built-in depe
 
 **Registration in Program.cs:**
 ```csharp
-builder.Services.AddSingleton<IPlanetRepository, InMemoryPlanetRepository>();
-builder.Services.AddSingleton<INasaMissionRepository, InMemoryNasaMissionRepository>();
+builder.Services.AddScoped<IPlanetRepository, PostgreSqlPlanetRepository>();
+builder.Services.AddScoped<INasaMissionRepository, PostgreSqlNasaMissionRepository>();
 ```
 
 **Consumption in Page Models:**
@@ -47,10 +47,13 @@ public interface INasaMissionRepository
 
 **Implementation:**
 ```csharp
-public sealed class InMemoryNasaMissionRepository : INasaMissionRepository
+public sealed class PostgreSqlNasaMissionRepository : INasaMissionRepository
 {
-    public IReadOnlyList<NasaMission> GetAllOrderedByLaunchDate() =>
-        _missions.OrderBy(m => m.LaunchDate).ToArray();
+    public IReadOnlyList<NasaMission> GetAllOrderedByLaunchDate()
+    {
+        // Query PostgreSQL database and return results
+        // Implementation details omitted for brevity
+    }
 }
 ```
 

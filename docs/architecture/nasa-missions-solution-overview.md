@@ -24,5 +24,5 @@ The SpaceGeeks website serves as an educational platform for space exploration c
 ### 2.4 Assumptions and Constraints
 - Existing NASA Missions page implementation is functional
 - Focus on test coverage and UI/UX rather than new features
-- Maintain the in-memory data storage approach
+- Transition from in-memory data storage to PostgreSQL database
 - Follow existing architectural patterns and coding standards

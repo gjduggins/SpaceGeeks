@@ -70,13 +70,14 @@ Provide access to domain data through well-defined interfaces.
 - `INasaMissionRepository` - Contract for NASA mission data access
 
 **Implementations:**
-- `InMemoryPlanetRepository` - In-memory implementation for planet data
-- `InMemoryNasaMissionRepository` - In-memory implementation for NASA mission data
+- `PostgreSqlPlanetRepository` - PostgreSQL implementation for planet data
+- `PostgreSqlNasaMissionRepository` - PostgreSQL implementation for NASA mission data
 
 **Responsibilities:**
 - Abstracting data storage implementation details
 - Providing consistent data access patterns
 - Ensuring data integrity and immutability
+- Managing database connections and transactions
 
 ### 3.4 Domain Layer
 
@@ -102,13 +103,14 @@ sequenceDiagram
     participant U as User
     participant P as NasaMissions.cshtml
     participant M as NasaMissionsModel
-    participant R as InMemoryNasaMissionRepository
-    participant D as NasaMission Data
+    participant R as PostgreSqlNasaMissionRepository
+    participant D as PostgreSQL Database
     
     U->>P: HTTP GET /NasaMissions
     P->>M: OnGet()
     M->>R: GetAllOrderedByLaunchDate()
-    R->>D: Access in-memory data
+    R->>D: Query NASA missions table
+    D-->>R: Return mission data
     R-->>M: Return IReadOnlyList<NasaMission>
     M-->>P: Populate Missions property
     P->>P: Render mission cards using _MissionCard partial
@@ -144,13 +146,13 @@ Domain models use C# records to ensure immutability.
 
 ## 6. Architectural Decisions
 
-### 6.1 In-Memory Data Storage
-**Decision**: Use in-memory collections instead of external databases.
+### 6.1 PostgreSQL Data Storage
+**Decision**: Transition from in-memory collections to PostgreSQL database.
 **Rationale**: 
-- Simplifies deployment and development setup
-- Appropriate for small, static datasets
-- Reduces operational complexity
-- Sufficient for educational website requirements
+- Provides data persistence across application restarts
+- Enables future scalability for larger datasets
+- Supports more robust data management capabilities
+- Maintains educational value by demonstrating real database integration
 
 ### 6.2 Razor Pages Architecture
 **Decision**: Use Razor Pages instead of MVC or SPA frameworks.

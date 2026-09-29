@@ -14,7 +14,7 @@ graph TD
     subgraph "Enhanced Components"
         F[NasaMissions.cshtml<br/>(UI Enhancement)] 
         G[NasaMissionsModel<br/>(No Changes)]
-        H[InMemoryNasaMissionRepository<br/>(No Changes)]
+        H[PostgreSqlNasaMissionRepository<br/>(New Implementation)]
         I[_MissionCard.cshtml<br/>(UI Enhancement)]
     end
     
@@ -70,10 +70,10 @@ graph TD
 
 ### Data Access Layer
 
-#### NASA Mission Repository (`InMemoryNasaMissionRepository`)
-**Responsibility**: Provide access to NASA mission data (no changes required)
+#### NASA Mission Repository (`PostgreSqlNasaMissionRepository`)
+**Responsibility**: Provide access to NASA mission data from PostgreSQL database
 
-**Note**: This component remains unchanged as we're working with the existing dataset.
+**Changes**: Replaces the previous in-memory implementation with database-backed storage for improved persistence and scalability.
 
 ### Domain Layer
 
