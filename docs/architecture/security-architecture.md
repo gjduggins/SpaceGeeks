@@ -48,8 +48,8 @@ All data in the SpaceGeeks application is classified as **Public**:
 - Static assets (images, CSS, JavaScript)
 
 ### 5.2 Data at Rest
-Since all data is stored in-memory and is public information:
-- No encryption of data at rest required
+With PostgreSQL database storage for public information:
+- Database files should be encrypted at rest
 - Static assets stored as plain files
 - No personally identifiable information (PII) stored
 

@@ -13,11 +13,13 @@ graph TD
     A[Presentation Layer<br/>Razor Pages] --> B[Business Logic Layer<br/>Page Models]
     B --> C[Data Access Layer<br/>Repositories]
     C --> D[Domain Layer<br/>Models]
+    C --> E[(Database Layer<br/>PostgreSQL)]
     
     style A fill:#4CAF50,stroke:#388E3C
     style B fill:#2196F3,stroke:#0D47A1
     style C fill:#FF9800,stroke:#E65100
     style D fill:#9C27B0,stroke:#4A148C
+    style E fill:#03A9F4,stroke:#01579B
 ```
 
 ## 3. Component Details

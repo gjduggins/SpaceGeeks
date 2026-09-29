@@ -9,10 +9,17 @@ This document describes the integration architecture of the SpaceGeeks website, 
 ### 2.1 Dependency Injection
 The primary integration mechanism within the application is .NET's built-in dependency injection container.
 
-**Registration in Program.cs:**
+**Registration in Program.cs (current in-memory implementation):**
 ```csharp
 builder.Services.AddSingleton<IPlanetRepository, InMemoryPlanetRepository>();
 builder.Services.AddSingleton<INasaMissionRepository, InMemoryNasaMissionRepository>();
+```
+
+**Registration in Program.cs (proposed PostgreSQL implementation):**
+```csharp
+builder.Services.AddScoped<IPlanetRepository, PostgreSqlPlanetRepository>();
+builder.Services.AddScoped<INasaMissionRepository, PostgreSqlNasaMissionRepository>();
+builder.Services.AddScoped<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
 ```
 
 **Consumption in Page Models:**

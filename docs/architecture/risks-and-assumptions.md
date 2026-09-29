@@ -12,9 +12,9 @@ This document outlines the key risks, assumptions, and constraints that informed
 **Assumption**: The primary purpose of the website is educational, targeting students, teachers, and space enthusiasts.
 **Impact**: Design decisions favor simplicity, accessibility, and content clarity over complex interactive features.
 
-#### Static Content Model
-**Assumption**: Content (planet and mission information) changes infrequently and can be managed through code deployments.
-**Impact**: In-memory data storage is sufficient; no external database or CMS is required.
+#### Dynamic Content Model
+**Assumption**: Content (planet and mission information) may need to be updated more frequently and should support dynamic management.
+**Impact**: PostgreSQL database storage is required; external database management is necessary.
 
 #### Non-Commercial Usage
 **Assumption**: The website is for educational/non-commercial use with no revenue generation requirements.

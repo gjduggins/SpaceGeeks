@@ -6,18 +6,20 @@ This document describes the deployment architecture for the SpaceGeeks website, 
 
 ## 2. Deployment Model
 
-The SpaceGeeks application follows a simple deployment model as a self-contained .NET application:
+The SpaceGeeks application follows a deployment model as a self-contained .NET application with PostgreSQL database:
 
 ```mermaid
 graph LR
     A[Source Code] --> B[Build Process]
     B --> C[Self-Contained Executable]
     C --> D[Target Environment]
+    E[(PostgreSQL Database)] -.-> D
     
     style A fill:#4CAF50,stroke:#388E3C
     style B fill:#2196F3,stroke:#0D47A1
     style C fill:#FF9800,stroke:#E65100
     style D fill:#9C27B0,stroke:#4A148C
+    style E fill:#03A9F4,stroke:#01579B
 ```
 
 ## 3. Build Process
