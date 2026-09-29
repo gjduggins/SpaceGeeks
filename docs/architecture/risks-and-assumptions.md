@@ -105,13 +105,13 @@ This document outlines the key risks, assumptions, and constraints that informed
 ### 4.1 Technical Risks
 
 #### Data Growth Risk
-**Risk**: As more content is added, in-memory data storage may become insufficient.
-**Likelihood**: Medium
-**Impact**: Performance degradation or memory exhaustion
+**Risk**: As more content is added, data storage requirements may increase.
+**Likelihood**: Low (with PostgreSQL)
+**Impact**: Storage capacity limits
 **Mitigation**:
-- Monitor memory usage and performance metrics
-- Plan for migration to external data store if needed
-- Implement data pagination for large datasets
+- Monitor database storage usage
+- Plan for database scaling options
+- Implement data archiving for historical data
 
 #### Single Point of Failure
 **Risk**: Application running on single instance creates availability risk.

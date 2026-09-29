@@ -144,13 +144,13 @@ Domain models use C# records to ensure immutability.
 
 ## 6. Architectural Decisions
 
-### 6.1 In-Memory Data Storage
-**Decision**: Use in-memory collections instead of external databases.
+### 6.1 Data Storage Evolution
+**Decision**: Migrate from in-memory collections to PostgreSQL database.
 **Rationale**: 
-- Simplifies deployment and development setup
-- Appropriate for small, static datasets
-- Reduces operational complexity
-- Sufficient for educational website requirements
+- Enables persistent data storage across application restarts
+- Supports larger datasets and future data expansion
+- Improves scalability for multi-instance deployments
+- Maintains existing repository pattern for minimal code changes
 
 ### 6.2 Razor Pages Architecture
 **Decision**: Use Razor Pages instead of MVC or SPA frameworks.

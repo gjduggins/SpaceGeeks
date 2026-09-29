@@ -27,7 +27,7 @@ SpaceGeeks aims to provide accessible, educational content about space explorati
 The solution consists of the following main components:
 
 1. **Web Frontend**: ASP.NET Core Razor Pages application serving HTML content
-2. **Data Layer**: In-memory repositories providing access to planet and NASA mission data
+2. **Data Layer**: PostgreSQL repositories providing persistent access to planet and NASA mission data
 3. **UI Components**: Reusable partial views for consistent presentation
 4. **Testing Suite**: xUnit tests ensuring quality and correctness
 

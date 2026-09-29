@@ -35,7 +35,7 @@ public class NasaMissionsModel : PageModel
 - Automatic lifetime management
 
 ### 2.2 Repository Pattern
-Data access is abstracted through repository interfaces, allowing for potential future changes in data storage without affecting consuming code.
+Data access is abstracted through repository interfaces, allowing for changes in data storage without affecting consuming code. The application will migrate from in-memory implementations to PostgreSQL-based implementations while preserving the same interfaces.
 
 **Interface Definition:**
 ```csharp
@@ -45,12 +45,24 @@ public interface INasaMissionRepository
 }
 ```
 
-**Implementation:**
+**Current Implementation (to be replaced):**
 ```csharp
 public sealed class InMemoryNasaMissionRepository : INasaMissionRepository
 {
     public IReadOnlyList<NasaMission> GetAllOrderedByLaunchDate() =>
         _missions.OrderBy(m => m.LaunchDate).ToArray();
+}
+```
+
+**Future Implementation:**
+```csharp
+public sealed class PostgreSQLNasaMissionRepository : INasaMissionRepository
+{
+    public IReadOnlyList<NasaMission> GetAllOrderedByLaunchDate()
+    {
+        // Query PostgreSQL database and map results to NasaMission objects
+        // Implementation details will use Npgsql and proper connection management
+    }
 }
 ```
 

@@ -10,6 +10,7 @@ This document describes the system context for the SpaceGeeks website, showing h
 graph TD
     A[User] -->|HTTPS/HTML| B(SpaceGeeks Website)
     B -->|Static Assets| C[(wwwroot)]
+    B -->|SQL Queries| D[(PostgreSQL Database)]
     
     subgraph "SpaceGeeks Application"
         B
@@ -21,11 +22,13 @@ graph TD
     
     subgraph "Storage"
         C
+        D
     end
     
     style B fill:#4CAF50,stroke:#388E3C
     style A fill:#2196F3,stroke:#0D47A1
     style C fill:#FF9800,stroke:#E65100
+    style D fill:#00BCD4,stroke:#006064
 ```
 
 ## 3. System Description
@@ -79,4 +82,4 @@ Within the application boundary, there are no additional trust boundaries as all
 
 ## 6. Integration Points
 
-The SpaceGeeks website currently has no external integration points. All data is stored in-memory and all assets are served locally. This simplifies deployment and eliminates external dependencies but limits scalability for large datasets.
+The SpaceGeeks website will integrate with a PostgreSQL database for data storage. All assets will continue to be served locally. This introduces an external dependency but enables data persistence, scalability for large datasets, and easier content management.

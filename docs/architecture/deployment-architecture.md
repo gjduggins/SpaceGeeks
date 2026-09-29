@@ -166,14 +166,15 @@ Basic metrics are available through:
 ## 8. Backup and Recovery
 
 ### 8.1 Data Persistence
-Since the application uses in-memory data stores:
-- No persistent data requiring backup
-- All content is part of the application deployment
-- Updates require new deployments
+With the migration to PostgreSQL:
+- Persistent data requires regular database backups
+- Content can be updated without application redeployment
+- Data is separated from application code for better maintainability
 
 ### 8.2 Recovery Procedures
-Recovery is achieved through:
-- Restarting the application process
+Recovery now includes:
+- Database backup restoration
+- Application process restart
 - Redeploying from known good artifacts
 - Rolling back to previous versions
 
