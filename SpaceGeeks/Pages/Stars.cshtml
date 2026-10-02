@@ -1,0 +1,22 @@
+@page
+@model StarsModel
+@{
+    ViewData["Title"] = "Stars";
+}
+
+<h1>Stars</h1>
+
+<div class="star-grid">
+    @foreach (var star in Model.Stars)
+    {
+        <div class="star-card">
+            <h2>@star.Name</h2>
+            <img src="@star.ImagePath" alt="@star.Name" onerror="this.onerror=null; this.src='/images/placeholder.svg';" />
+            <ul class="star-facts">
+                <li><strong>Distance from Earth:</strong> @star.DistanceFromEarthLightYears.ToString("N2") light years</li>
+                <li><strong>Luminosity:</strong> @star.Luminosity</li>
+                <li><strong>Temperature:</strong> @star.TemperatureKelvin.ToString("N0") K</li>
+            </ul>
+        </div>
+    }
+</div>
